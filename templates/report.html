@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>SECOND HAND</title>
+    <style>
+        body {padding: 20px; font-size: 14px;}
+        section {display: grid; grid-template-columns: 4fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; gap: 16px;}
+    </style>
+</head>
+<body>
+    <h1>SECOND HAND</h1>
+    <p>'{{searching_keyword}}' 검색 결과: {{result_count}}건</p>
+    <section>
+        <h4>제목</h4>
+        <h4>저자</h4>
+        <h4>출판사</h4>
+        <h4>출판 연도</h4>
+        <h4>새 책</h4>
+        <h4>eBook</h4>
+        <h4>알라딘 중고</h4>
+        <h4>이 광활한 우주점</h4>
+        <h4>판매자 중고</h4>
+        {% for book in books %}
+            <span>{{book.title}}</span>
+            <span>{{book.author}}</span>
+            <span>{{book.publisher}}</span>
+            <span>{{book.publish_date}}</span>
+            {% if book.new_book_link: %}
+                <a href="{{book.new_book_link}}" target="_blank">{{book.new_book_price}}</a>
+            {% else: %}
+                <span>{{book.new_book_price}}</span>
+            {% endif %}
+
+            {% if book.ebook_link: %}
+                <a href="{{book.ebook_link}}" target="_blank">{{book.ebook_price}}</a>
+            {% else: %}
+                <span>{{book.ebook_price}}</span>
+            {% endif %}
+
+            {% if book.aladin_link: %}
+                <a href="https://www.aladin.co.kr/{{book.aladin_link}}" target="_blank">{{book.aladin_price}}</a>
+            {% else: %}
+                <span>{{book.aladin_price}}</span>
+            {% endif %}
+
+            {% if book.universe_link: %}
+                <a href="https://www.aladin.co.kr/{{book.universe_link}}" target="_blank">{{book.universe_price}}</a>
+            {% else: %}
+                <span>{{book.universe_price}}</span>
+            {% endif %}
+
+            {% if book.seller_link: %}
+                <a href="https://www.aladin.co.kr/{{book.seller_link}}" target="_blank">{{book.seller_price}}</a>
+            {% else: %}
+                <span>{{book.seller_price}}</span>
+            {% endif %}
+        {% endfor %}
+    </section>
+</body>
+</html>
